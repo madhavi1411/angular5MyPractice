@@ -1,0 +1,21 @@
+<h2>{{title}}</h2>
+
+<input [value] = "counter * 2" />
+<p>Counter: {{counter}}</p>
+<p>Counter * 3: {{counter * 3}}</p>
+
+<div (click) = 'parentClick()'> <!-- bubbles the click event to the parent --> 
+  <button (click) = 'increment($event)'>
+    +1
+  </button>
+</div>
+
+<button (click) = 'counter = counter-1'>
+    -1
+  </button>
+
+<!--
+  {{}} interpolation
+  () - event binding
+  [] - property binding
+-->

@@ -1,0 +1,26 @@
+
+<div>
+
+        <h2>
+                Welcome to Angular {{appTitle}}! 
+            </h2>
+    <app-header>
+    </app-header>
+
+    <app-home></app-home>
+
+    <app-about>
+    </app-about>
+
+    <app-contact></app-contact>
+
+    <!-- parent to child communication we use @Input in child -->
+    <!-- child to parent communication we use @Output and EventEmitter -->
+    <!-- <app-footer year = '2018' appTitle = 'Test app footer'> -->
+    <!-- <app-footer year = '{{2018 + 1}}' appTitle = 'Test app footer'> -->
+     <!-- <app-footer [year] = '2018 + 2' appTitle = 'Test app footer'>  preserves the datatypes -->
+
+        <!-- <app-footer [year] = 'year + 1' [appTitle] = 'appTitle'> -->
+                <app-footer [year] = 'year + 1' [x-title] = 'appTitle' (contactEvent) = "fromChild($event)">
+    </app-footer>
+</div>
