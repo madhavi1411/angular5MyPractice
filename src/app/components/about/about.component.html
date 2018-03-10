@@ -1,3 +1,29 @@
-<p>
-  about works!
-</p>
+<div>
+<h2> About </h2>
+
+<button (click) = "addMember()">
+  Add Member
+</button>
+
+<button (click) = "members = []">
+    Empty Members
+</button>
+
+<button (click) = "show = !show">
+  {{show ? "Hide" : "Show"}}
+</button>
+
+<div [ngClass] = "{highlightBg: highlight}">
+<ul *ngIf = "show else listNotShown">
+  <!-- * is structural directive which modifies the dom elements dynamically -->
+  <li *ngFor="let member of members">
+    {{member.name}}
+  </li>
+</ul>
+</div>
+
+<!-- Angular 4.0 feature else for ngIf -->
+<ng-template #listNotShown>
+  <p>List is not shown</p>
+</ng-template>
+</div>
