@@ -13,11 +13,11 @@
   {{show ? "Hide" : "Show"}}
 </button>
 
-<div [ngClass] = "{highlightBg: highlight}">
+<div [ngClass] = "{highlightBg: highlight}" (mouseenter) = "highlight = true" (mouseleave) = "highlight = false">
 <ul *ngIf = "show else listNotShown">
   <!-- * is structural directive which modifies the dom elements dynamically -->
-  <li *ngFor="let member of members">
-    {{member.name}}
+  <li *ngFor="let member of members; let k = index;">
+    {{k}} -- {{member.name}}
   </li>
 </ul>
 </div>
