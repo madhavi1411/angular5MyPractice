@@ -1,11 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 
 // Business logic communication with webservice
 // data sharing among components
 
-@Injectable()
-export class DataService {
+//Angular creates service object, inject the instance
 
-  constructor() { }
+//singleton object and multiple instances
+//scope of service can be per component or one for every component
+
+
+@Injectable()
+export class DataService implements OnInit, OnDestroy{
+
+
+  ngOnDestroy(): void {
+   console.log("data service on Destroy")
+  }
+  ngOnInit(): void {
+    console.log("data service on Init")
+  }
+  constructor() { 
+    console.log("DataService created");
+  }
 
 }

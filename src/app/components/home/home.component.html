@@ -52,6 +52,6 @@
           (likesChange) = "homeLikes = $event"> -->
     
   <!-- OR -->
-    <app-like [(likes)] = "homeLikes">
+    <app-like [(likes)] = "homeLikes" *ngIf = 'counter %2 == 1'>
 
 </app-like>

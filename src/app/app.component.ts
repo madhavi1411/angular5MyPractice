@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
         //     console.log('Timeout called');
         //     that.year = 2020;
         // }, 3000);
-        throw new Error("Method not implemented.");
     }
      appTitle: string = 'Product App';
      year: number = 1987;

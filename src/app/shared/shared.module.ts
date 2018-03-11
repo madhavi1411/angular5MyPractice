@@ -5,6 +5,7 @@ import { LikeComponent } from './components/like/like.component';
 import { HighlightDirective } from './directives/highlight.directive';
 import { PowerPipe } from './pipes/power.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
+import { DataService } from './services/data.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,13 @@ import { FilterPipe } from './pipes/filter.pipe';
     LikeComponent,
     PowerPipe,
     HighlightDirective
+  ],
+
+  //module provider
+  // single instance per application
+  // if we have DataService also in component level, then component level takes higher precidence.
+  providers: [
+    DataService
   ]
 
 })
