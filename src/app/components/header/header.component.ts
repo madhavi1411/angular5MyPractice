@@ -18,7 +18,15 @@ export class HeaderComponent implements OnInit {
     this.totalCount = this.dataService.cartItems.length;
 
     // workaround -- added line 13
-    this.cartItems = this.dataService.cartItems;
+    // this.cartItems = this.dataService.cartItems;
+
+    //RxJs way
+    // subscribe
+    this.dataService.cartItemsSource.subscribe(cartItems => {
+      this.cartItems = cartItems;
+      this.totalCount = cartItems.length
+      console.log("header subscribe : ", cartItems);
+    });
   }
 
   emptyCart() {

@@ -13,7 +13,10 @@ export class ProductService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://localhost:7070/api/products');
+    let productApi : string = 'http://localhost:7070/api/products';
+    let delayedProductApi: string = "http://localhost:7070/delayed/api/products";
+    
+    return this.http.get<Product[]>(delayedProductApi);
   }
 
 }

@@ -1,5 +1,12 @@
 import { Injectable } from '@angular/core';
 
+// Subject => subscribe called only on next()
+import { Subject } from 'rxjs/Subject';
+
+// BehaviorSubject => subscribe called as soon as subscribed
+// publish the last known value
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+
 
 // sharing data between services (not from parent to child or child to parent)
 export interface CartItem {
@@ -39,6 +46,10 @@ export class DataService {
     console.log("added Item");
     this.cartItems.push(cartItem);
 
+    //RxJs 
+    //publish
+    this.cartItemsSource.next(this.cartItems);
+
   }
 
 
@@ -54,10 +65,18 @@ export class DataService {
 // we can subscribe based on a filter as well. -- this is not as part of RxJs
 // components can react depending on the need of the data from source.
 
+  // cartItemsSource : Subject<CartItem[]> = new Subject();
+  cartItemsSource : BehaviorSubject<CartItem[]> = new BehaviorSubject([]);
+  // cartItemsSource : BehaviorSubject<CartItem[]> = new BehaviorSubject(this.cartItems);
+
 
   empty() {
     console.log("empty cart called");
     this.cartItems = []; // we are loosing the reference here. [here we need to user observable pattern from RxJs]
+
+    //RxJs 
+    //publish
+    this.cartItemsSource.next(this.cartItems);
   }
 
 }

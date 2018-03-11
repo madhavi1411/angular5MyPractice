@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { CartItem, DataService } from '../../shared/services/data.service';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
+
 
   products : Product[] = [];
+
+  // to stop the processing request when component is not in scope.
+  subscription: Subscription;
+
+
+  cartSubscription : Subscription;
+  cartItems : CartItem[] = [];
+
 
 
   constructor(private productService: ProductService, private dataService : DataService) {
@@ -18,10 +28,22 @@ export class ProductListComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.productService.getProducts().subscribe(products => {
+    this.subscription = this.productService.getProducts().subscribe(products => {
       this.products = products;
+
+      console.log("got products: ", this.products);
       
     });
+
+    // workaround to pre-fill the number of cart items when we go back to another tab and come here again -- Start
+    // this.cartItems = this.dataService.cartItems;
+    // workaround -- END  ( Actual Way is publish using BehaviourSubject)
+
+    this.cartSubscription = this.dataService.cartItemsSource.subscribe(cartItems => {
+      this.cartItems = cartItems;
+      console.log("Product list CART Subscription, ", cartItems);
+    });
+
   }
 
   addToCart(product: Product) {
@@ -38,6 +60,14 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(product: Product) {
 
+  }
+
+  ngOnDestroy(): void {
+    if (!this.subscription.closed) {
+      this.subscription.unsubscribe();
+    }
+
+    this.cartSubscription.unsubscribe();
   }
 
 }
