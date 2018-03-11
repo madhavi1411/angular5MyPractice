@@ -15,6 +15,7 @@ import { FilterPipe } from './pipes/filter.pipe';
   exports: [
     //allow other modules to use component, directive, pipes 
     LikeComponent,
+    PowerPipe,
   ]
 
 })
