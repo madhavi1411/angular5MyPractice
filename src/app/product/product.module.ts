@@ -16,7 +16,7 @@ export const routes: Routes = [
     //nested navigation
     children: [
       {
-        path: 'list',
+        path: '',
         component: ProductListComponent
       },
       {
@@ -41,7 +41,7 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
 
-    //FIXME: forClient
+    //FIXME: forChild
     RouterModule.forRoot(routes),
   ],
   declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent]
