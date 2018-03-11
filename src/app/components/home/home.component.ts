@@ -10,6 +10,9 @@ export class HomeComponent implements OnInit {
   price: number = 99.99;
   title: string = 'Home';
   counter: number = 0;
+  today : Date = new Date();
+
+  homeLikes : number = 10;
 
   constructor() { }
 

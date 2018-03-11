@@ -1,4 +1,4 @@
-<h2>{{title}}</h2>
+<h2>{{title | uppercase}}</h2>
 
 <input [value] = "counter * 2" />
 <p>Counter: {{counter}}</p>
@@ -15,7 +15,38 @@
   </button>
 
 <!--
-  {{}} interpolation
+  {{}} interpolation -- data binding
   () - event binding
   [] - property binding
 -->
+
+<!-- two way binding -->
+<span> Price </span>
+<input [(ngModel)] = 'price' type = "number" />
+<p> price is {{price | currency: 'EUR'}}</p>
+
+<!-- two way binding, output should have input name + "Change" -->
+<p> Option 2 two way binding</p>
+<input [ngModel] = 'price'  type = "number"
+       (ngModelChange) = "price = $event" />
+
+<p> Current Date (full): {{today | date: 'full'}}</p>
+<p> Current Date(short): {{today | date: 'short'}}</p>
+<p> Current Date(fullDate): {{today | date: 'fullDate'}}</p>
+<p> Current Date(fullDate): {{today | date: 'fullDate' | uppercase}}</p>
+<p> Current Date(fullDate): {{today | date: 'dd/MMM/yy' | uppercase}}</p>
+<p> Current Date(fullDate): {{today | date: 'ddMMMyyyy' | uppercase}}</p>
+
+
+
+<!-- sharedModule related-->
+
+<!-- two way binding from the like module to home module -->
+<p> Home Likes {{homeLikes}}</p>
+<!-- <app-like [likes] = "homeLikes"
+          (likesChange) = "homeLikes = $event"> -->
+    
+  <!-- OR -->
+    <app-like [(likes)] = "homeLikes">
+
+</app-like>

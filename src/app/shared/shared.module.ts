@@ -10,6 +10,12 @@ import { FilterPipe } from './pipes/filter.pipe';
   imports: [
     CommonModule
   ],
-  declarations: [AddressComponent, LikeComponent, HighlightDirective, PowerPipe, FilterPipe]
+  declarations: [AddressComponent, LikeComponent, HighlightDirective, PowerPipe, FilterPipe],
+
+  exports: [
+    //allow other modules to use component, directive, pipes 
+    LikeComponent,
+  ]
+
 })
 export class SharedModule { }
