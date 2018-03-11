@@ -6,7 +6,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ProductSearchComponent } from './product-search/product-search.component';
 
 import {RouterModule, Routes} from '@angular/router';
-import { componentFactoryName } from '@angular/compiler';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   {
@@ -37,7 +37,12 @@ export const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+
+    //FIXME: forClient
+    RouterModule.forRoot(routes),
   ],
   declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent]
 })

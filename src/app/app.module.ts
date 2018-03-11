@@ -49,6 +49,8 @@ const routes : Routes = [
         RouterModule.forRoot(routes), //forRoot is a static method from RouterModule which works like a factory
 
         SharedModule,
+
+        //TODO: lazy loading of Product module
         ProductModule,
 
 
