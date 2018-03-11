@@ -7,6 +7,7 @@ import { ProductSearchComponent } from './product-search/product-search.componen
 
 import {RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProductService } from './services/product.service';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,9 @@ export const routes: Routes = [
     //FIXME: forChild
     RouterModule.forRoot(routes),
   ],
-  declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent]
+  declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent],
+  providers: [
+    ProductService
+  ]
 })
 export class ProductModule { }

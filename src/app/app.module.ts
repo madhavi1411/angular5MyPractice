@@ -18,6 +18,12 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {RouterModule, Routes} from '@angular/router';
 import { ProductModule } from './product/product.module';
 
+// Angular 4.3 onwards
+// includes simple api's
+// interceptors [auth]
+import {HttpClientModule} from '@angular/common/http';
+
+
 const routes : Routes = [
     {
         path: '',
@@ -47,6 +53,7 @@ const routes : Routes = [
         FormsModule,
         //creates router module, based on routes
         RouterModule.forRoot(routes), //forRoot is a static method from RouterModule which works like a factory
+        HttpClientModule,  //this module provides certain api's which help to retrieve the data
 
         SharedModule,
 
