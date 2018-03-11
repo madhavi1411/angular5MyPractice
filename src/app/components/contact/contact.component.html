@@ -1,3 +1,26 @@
-<p>
-  contact works!
-</p>
+<div #rootDiv>
+  <h2>Contact</h2>
+  <!-- # template reference variable -->
+
+  <input #name />
+  
+  <p #para1>
+
+  </p>
+
+  <button (click) = "name.focus()"> <!-- here name is the dom element from line 5 so we can directly access its functions--> 
+    Focus
+  </button>
+
+  <button (click) = "name.value = '' "> <!-- here name is the dom element from line 5 so we can directly access its functions--> 
+    Clear
+  </button>
+
+  <button (click)="para1.textContent = name.value ">
+      Set Text
+  </button>
+
+  <span> City : {{address?.city}},
+     pin : {{address?.pincode}}</span>
+
+</div>

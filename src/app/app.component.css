@@ -2,3 +2,10 @@ h2 {
     color: blue;
     text-align: center;
 }
+
+div {
+    position : relative;
+    background: lightgray;
+    margin: 50px
+    
+}
