@@ -1,6 +1,7 @@
 <h2>{{title | uppercase}}</h2>
 
-<input [value] = "counter * 2" />
+<input appHighlight [value] = "counter * 2"
+        *ngIf = "counter %3 != 0" />
 <p>Counter: {{counter}}</p>
 <p>Counter * 3: {{counter * 3}}</p>
 

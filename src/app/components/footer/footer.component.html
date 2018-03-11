@@ -1,4 +1,4 @@
-<div>
+<div appHighlight #myfooterDiv = "appHighlightDirective"> <!-- #myfooterDiv gets the dom element reference  // where as the name after = gives the reference of the highlight directive which we want to export -->
 <hr />
 <p>
   Copyrights @{{year}}, {{appTitle}}
@@ -7,5 +7,9 @@
 <button (click) = "contact()">
   Contact Us
 </button>
+
+<p> Highlight color {{myfooterDiv.color}}</p>
+
+<button (click) = "myfooterDiv.setColor('yellow')">Set Color Yellow</button>
 
 </div>

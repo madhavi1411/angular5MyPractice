@@ -1,4 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, 
+          ViewChild, 
+} from '@angular/core';
+import { HighlightDirective } from '../../shared/directives/highlight.directive';
 // import { Input } from '@angular/core/src/metadata/directives';
 
 @Component({
@@ -16,6 +19,9 @@ export class FooterComponent implements OnInit {
   // @Input()
   appTitle: string;
 
+  @ViewChild('myfooterDiv')  //ref to highlight directive
+  directiveRef : HighlightDirective;
+
 
   // output, event binding () -- child to parent communication via events
   @Output()
@@ -24,7 +30,8 @@ export class FooterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log("year ", this.year, typeof this.year)
+    console.log("year ", this.year, typeof this.year);
+    this.directiveRef.setColor('red');
   }
 
   contact() {
