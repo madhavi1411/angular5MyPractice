@@ -1,4 +1,13 @@
-import { Injectable, } from '@angular/core';
+import { Injectable } from '@angular/core';
+
+
+// sharing data between services (not from parent to child or child to parent)
+export interface CartItem {
+  name: string;
+  price : number;
+  id : number;
+}
+
 
 // Business logic communication with webservice
 // data sharing among components
@@ -22,6 +31,33 @@ export class DataService {
   // }
   constructor() { 
     console.log("DataService created");
+  }
+
+  cartItems: CartItem[] = [];
+
+  addItem(cartItem: CartItem) {
+    console.log("added Item");
+    this.cartItems.push(cartItem);
+
+  }
+
+
+  //RxJS:
+// Source - produces some data and we have subscribers to receive the data
+// Here source is DataService, and we have changes in the cartItem
+// we need to publish the changes
+// EventEmitter --> Subject --> Observable
+// RxJs has feasibility to subscribe to n number of subscribers
+// RxJs also allows to unsubscribe and re-subscribe any point in time
+
+
+// we can subscribe based on a filter as well. -- this is not as part of RxJs
+// components can react depending on the need of the data from source.
+
+
+  empty() {
+    console.log("empty cart called");
+    this.cartItems = []; // we are loosing the reference here. [here we need to user observable pattern from RxJs]
   }
 
 }

@@ -4,8 +4,15 @@
 
 <a routerLink = '/' class = 'button' routerLinkActive = "success" [routerLinkActiveOptions] = '{exact: true}'>Home</a>
 <a routerLink = '/products' class = "button " routerLinkActive = "success">Product</a>
+
+<!-- <a routerLink = '/cart' class = "button" routerLinkActive = "success" >Cart [{{totalCount}}]</a> -->
+<a routerLink = '/cart' class = "button" routerLinkActive = "success" >Cart [{{cartItems.length}}]</a>
+
 <a routerLink = '/about' class = "button" routerLinkActive = "success">About</a>
 <a routerLink = '/contact' class = "button" routerLinkActive = "success" >Contact</a>
 
+<button> {{totalCount}}</button>
+
+<button (click) = "emptyCart()"> Empty Cart</button>
 <hr />
 </div>
