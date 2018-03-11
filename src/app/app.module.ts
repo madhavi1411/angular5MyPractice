@@ -13,7 +13,30 @@ import { ContactComponent } from './components/contact/contact.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
+import {RouterModule, Routes} from '@angular/router';
+import { ProductModule } from './product/product.module';
+
+const routes : Routes = [
+    {
+        path: '',
+        component: HomeComponent
+    }, 
+    {
+        path: 'about',
+        component: AboutComponent
+    },
+    {
+        path: 'contact',
+        component: ContactComponent
+    },
+    {
+        path: '**',
+        component: NotFoundComponent
+    },
+
+]
 
 
 
@@ -22,8 +45,11 @@ import { SharedModule } from './shared/shared.module';
     imports: [
         BrowserModule,
         FormsModule,
+        //creates router module, based on routes
+        RouterModule.forRoot(routes), //forRoot is a static method from RouterModule which works like a factory
 
         SharedModule,
+        ProductModule,
 
 
         //InventoryModule
@@ -38,6 +64,7 @@ import { SharedModule } from './shared/shared.module';
         ContactComponent,
         HeaderComponent,
         FooterComponent,
+        NotFoundComponent,
         //HeaderComponent,
         //FooterComponent,
         //HomeComponent
