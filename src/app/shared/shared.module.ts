@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SaveAlertGuard } from './guards/save-alert.guard';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RequestInterceptorService } from './services/request-interceptor.service';
 
 export const routes: Routes = [
   {
@@ -43,7 +45,13 @@ export const routes: Routes = [
     DataService,
     AuthService,
     AuthGuard,
-    SaveAlertGuard
+    SaveAlertGuard,
+
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptorService,
+      multi: true  // as we can have n-number of interceptors we need to specify this multi property, if false it will override the other interceptors
+    }
   ]
 
 })
