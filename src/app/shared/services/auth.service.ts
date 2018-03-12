@@ -33,7 +33,7 @@ export class AuthService {
                     .map(tokenObj => { // now map is available as we have import stmt on line 9
                       console.log("Response: ", tokenObj);
                       this.authStatus = true;
-                      this.authSource.next(true);
+                      this.authSource.next(this.authStatus);
                       this.token = tokenObj['token'];
                      
                       return tokenObj; // pass to subscribe
@@ -44,6 +44,7 @@ export class AuthService {
     this.token = '';
     this.authStatus = false;
     //TODO: Delete token
+    this.authSource.next(this.authStatus);
 
   }
 }
