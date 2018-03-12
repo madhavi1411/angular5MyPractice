@@ -73,6 +73,8 @@ export class ProductEditComponent implements OnInit, OnDestroy {
       //option 1: continue working same form
       this.product = savedProduct;
 
+      this.productForm.reset(savedProduct);
+
       //option 2: goto to list page.
       this.gotoList();
     });   
