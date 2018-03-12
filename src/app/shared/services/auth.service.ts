@@ -16,7 +16,13 @@ export class AuthService {
   token: string;
 
   constructor(private http: HttpClient) {
-    this.authSource = new BehaviorSubject(false);
+    
+    this.token = window.localStorage.getItem('token');
+    if (this.token) {
+      this.authStatus = true;
+    }
+
+    this.authSource = new BehaviorSubject(this.authStatus);
    }
 
   isAuthenticated() : boolean {
@@ -35,12 +41,17 @@ export class AuthService {
                       this.authStatus = true;
                       this.authSource.next(this.authStatus);
                       this.token = tokenObj['token'];
+
+                      // to store the token on localstorage 
+                      window.localStorage.setItem('token', this.token);
                      
                       return tokenObj; // pass to subscribe
                     }); 
   }
 
   logout() {
+    window.localStorage.removeItem('token');
+
     this.token = '';
     this.authStatus = false;
     //TODO: Delete token
