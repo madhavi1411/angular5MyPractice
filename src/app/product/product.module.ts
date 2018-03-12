@@ -9,6 +9,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { SharedModule } from '../shared/shared.module';
+import { SaveAlertGuard } from '../shared/guards/save-alert.guard';
+import { SaveWorkGuardService } from './services/save-work-guard.service';
 
 export const routes: Routes = [
   {
@@ -25,11 +27,13 @@ export const routes: Routes = [
       },
       {
         path: 'edit/:id',
-        component: ProductEditComponent
+        component: ProductEditComponent,
+        canDeactivate: [SaveWorkGuardService]
       },
       {
         path: 'create',
-        component: ProductEditComponent
+        component: ProductEditComponent,
+        canDeactivate: [SaveWorkGuardService]
       },
       {
         path: 'search',
@@ -53,7 +57,8 @@ export const routes: Routes = [
   ],
   declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent],
   providers: [
-    ProductService
+    ProductService,
+    SaveWorkGuardService
   ]
 })
 export class ProductModule { }
