@@ -22,6 +22,7 @@ import {RouterModule, Routes} from '@angular/router';
 // includes simple api's
 // interceptors [auth]
 import {HttpClientModule} from '@angular/common/http';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 
 const routes : Routes = [
@@ -41,9 +42,10 @@ const routes : Routes = [
     // Lazy loading of product module
     {
         path : 'products',
-        loadChildren: 'app/product/product.module#ProductModule'  // path to module file, class name
+        loadChildren: 'app/product/product.module#ProductModule',  // path to module file, class name
+        canActivate:[AuthGuard]
     },
-    
+
     {
         path: '**',
         component: NotFoundComponent
