@@ -3,6 +3,7 @@ import { ProductService } from '../services/product.service';
 import { Product } from '../models/product';
 import { CartItem, DataService } from '../../shared/services/data.service';
 import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-product-list',
@@ -12,10 +13,15 @@ import { Subscription } from 'rxjs/Subscription';
 export class ProductListComponent implements OnInit, OnDestroy {
 
 
-  products : Product[] = [];
+  // products : Product[] = [];
+
+  //how to reduce the boiler place code
+  products$ : Observable<Product[]>     // $ - at the end of variable name to represent async that the data will be delayed
 
   // to stop the processing request when component is not in scope.
-  subscription: Subscription;
+  // subscription: Subscription;
+
+  //how to reduce the boiler place code
 
 
   cartSubscription : Subscription;
@@ -30,12 +36,14 @@ export class ProductListComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-    this.subscription = this.productService.getProducts().subscribe(products => {
-      this.products = products;
+    // this.subscription = this.productService.getProducts().subscribe(products => {
+    //   this.products = products;
 
-      console.log("got products: ", this.products);
+    //   console.log("got products: ", this.products);
       
-    });
+    // });
+
+    this.products$ = this.productService.getProducts();
 
     // workaround to pre-fill the number of cart items when we go back to another tab and come here again -- Start
     // this.cartItems = this.dataService.cartItems;
@@ -65,11 +73,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (!this.subscription.closed) {
-      this.subscription.unsubscribe();
-    }
+    // if (!this.subscription.closed) {
+    //   this.subscription.unsubscribe();
+    // }
 
-    this.cartSubscription.unsubscribe();
+    // this.cartSubscription.unsubscribe();
   }
 
 }

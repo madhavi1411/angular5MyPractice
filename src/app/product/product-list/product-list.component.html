@@ -1,6 +1,8 @@
 
 <h2>Product List [Cart {{cartItems.length}}]</h2>
 
+Observable {{products$}}
+
 <label >Field Name</label>
 <select [(ngModel)]="fieldName">
   <option value='price'>Price</option>
@@ -34,7 +36,13 @@
     </tr>
     </thead>
 
-    <tr *ngFor = 'let product of (products | filter:fieldName:predicate:expectedValue)'>
+    <!-- <tr *ngFor = 'let product of (products | filter:fieldName:predicate:expectedValue)'> -->
+      <!-- Observable way to acces products - async pipe is provided by Angular which does the subscribe for itself  
+            cons: we can't handle the error cases, we should be sure that it is going to be success.
+            pros: we avoid the boiler code to subscribe in the components
+                  also unsubscribes when we move out of this page
+          -->
+        <tr *ngFor = 'let product of (products$ | async | filter:fieldName:predicate:expectedValue)'>
       <td>{{product.id}}</td>
       <!-- <td>{{product.name}}</td> -->
       <td> 

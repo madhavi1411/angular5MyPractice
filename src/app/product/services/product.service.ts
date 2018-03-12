@@ -11,6 +11,7 @@ console.log("ENV: " , environment)
 
 @Injectable()
 export class ProductService { 
+  
 
   // Dependency injection (DI)
   constructor(private http: HttpClient) { 
@@ -24,7 +25,7 @@ export class ProductService {
     const productApi : string = `${environment.apiEndPoint}/api/products`;
     const delayedProductApi: string = `${environment.apiEndPoint}/delayed/api/products`;
    
-    
+  
     return this.http.get<Product[]>(productApi);
   }
 
