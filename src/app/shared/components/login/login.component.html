@@ -1,3 +1,13 @@
-<p>
-  login works!
-</p>
+<div class = 'container'>
+  <h2>Login Page</h2>
+
+  <p *ngIf='errorMessage'>{{errorMessage}}</p>
+  <form (ngSubmit) = 'login()'>
+
+    User Name: <input [(ngModel)] = 'username' name = 'username'/>
+    Password: <input [(ngModel)] = 'password' name = 'password'/>
+
+    <button type = 'submit'>Login</button>
+  </form>
+  </div>
+

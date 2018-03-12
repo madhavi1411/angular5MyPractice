@@ -9,6 +9,6 @@ export const environment = {
   buildName: 'development',
   apiEndPoint: 'http://localhost:7070',
   // apiEndPoint: 'http://localhost:7070/delayed',
-  authEndPoint: 'http://localhost:700/oauth/token',
+  authEndPoint: 'http://localhost:7070/oauth/token',
 
 };
