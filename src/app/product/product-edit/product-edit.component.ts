@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ProductService } from '../services/product.service';
 
 // GET /api/products/34345
@@ -11,6 +11,8 @@ import {ActivatedRoute, //read url params
 import { Product } from '../models/product';
 import { Brand } from '../models/brand';
 import { Subscription } from 'rxjs/Subscription';
+
+import {NgForm} from '@angular/forms';
 
 
 @Component({
@@ -26,6 +28,10 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   
   // to stop the processing request when component is not in scope.
   subscription: Subscription;
+
+  @ViewChild('productForm')
+  productForm : NgForm;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }
 
@@ -57,6 +63,11 @@ export class ProductEditComponent implements OnInit, OnDestroy {
   saveProduct() {
     console.log("Saved Product: ", this.product);
 
+
+    if (this.productForm.invalid) {
+      alert('Invalid form data');
+      return;
+    }
     this.productService.saveProduct(this.product).subscribe(savedProduct => {
 
       //option 1: continue working same form

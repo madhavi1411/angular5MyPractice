@@ -1,9 +1,15 @@
 <h2>Product Edit -- {{product.name}}</h2>
 
-<form (ngSubmit) = 'saveProduct()'>
+<button (click) = 'gotoList()'>GO BACK TO LIST</button>
 
+<form (ngSubmit) = 'saveProduct()' #productForm = 'ngForm'> 
+    <p *ngIf = 'productForm.invalid'>Invalid Data on Form</p>
+    <p *ngIf = 'productForm.dirty'>Data on Form Changed</p>
   <div class="form-group">
-<label> Name: </label> <input [(ngModel)] = 'product.name' type='text' name = 'name' /> </div>
+    <!-- ngModel has properties for checking the validations like required, minlength, maxlength -->
+<label> Name: </label> <input [(ngModel)] = 'product.name' type='text' name = 'name' required minlength="3" #productName = 'ngModel'/>
+<p *ngIf = 'productName.invalid'>Invalid Name</p>
+</div>
 Year: <input [(ngModel)] = 'product.year'  type = 'number' name = 'year'/>
 Price: <input [(ngModel)] = 'product.price' type = 'number' name ='price'/>
 Weight: <input [(ngModel)] = 'product.weight' type = 'text' name = 'weight' />
@@ -13,9 +19,9 @@ Weight: <input [(ngModel)] = 'product.weight' type = 'text' name = 'weight' />
   <option [value] = "brand.id" *ngFor = 'let brand of brands'>{{brand.name}}</option>
 </select> 
 
-<button type = 'submit'>
+<button type = 'submit' >
   Save
 </button>
 
 </form>
-<button (click) = 'gotoList()'>GO BACK TO LIST</button>
+
