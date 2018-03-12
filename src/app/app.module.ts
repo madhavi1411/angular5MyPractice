@@ -16,7 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 import {RouterModule, Routes} from '@angular/router';
-import { ProductModule } from './product/product.module';
+// import { ProductModule } from './product/product.module';
 
 // Angular 4.3 onwards
 // includes simple api's
@@ -37,10 +37,18 @@ const routes : Routes = [
         path: 'contact',
         component: ContactComponent
     },
+
+    // Lazy loading of product module
+    {
+        path : 'products',
+        loadChildren: 'app/product/product.module#ProductModule'  // path to module file, class name
+    },
+    
     {
         path: '**',
         component: NotFoundComponent
     },
+
 
 ]
 
@@ -58,7 +66,7 @@ const routes : Routes = [
         SharedModule,
 
         //TODO: lazy loading of Product module
-        ProductModule,
+        // ProductModule,
 
 
         //InventoryModule

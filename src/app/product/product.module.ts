@@ -12,7 +12,9 @@ import { SharedModule } from '../shared/shared.module';
 
 export const routes: Routes = [
   {
-    path: 'products',
+    // path: 'products',
+    // when we do the lazy loading of product module
+    path: '',
     component: ProductHomeComponent,
 
     //nested navigation
@@ -44,7 +46,9 @@ export const routes: Routes = [
     ReactiveFormsModule,
 
     //FIXME: forChild
-    RouterModule.forRoot(routes),
+    // RouterModule.forRoot(routes),
+    // For lazy loading
+    RouterModule.forChild(routes),
     SharedModule
   ],
   declarations: [ProductHomeComponent, ProductListComponent, ProductEditComponent, ProductSearchComponent],
