@@ -1,3 +1,21 @@
-<p>
-  product-edit works!
-</p>
+<h2>Product Edit -- {{product.name}}</h2>
+
+<form (ngSubmit) = 'saveProduct()'>
+
+  <div class="form-group">
+<label> Name: </label> <input [(ngModel)] = 'product.name' type='text' name = 'name' /> </div>
+Year: <input [(ngModel)] = 'product.year'  type = 'number' name = 'year'/>
+Price: <input [(ngModel)] = 'product.price' type = 'number' name ='price'/>
+Weight: <input [(ngModel)] = 'product.weight' type = 'text' name = 'weight' />
+
+<label>Brand</label>
+<select name = 'brandId' [(ngModel)] = "product.brandId">
+  <option [value] = "brand.id" *ngFor = 'let brand of brands'>{{brand.name}}</option>
+</select> 
+
+<button type = 'submit'>
+  Save
+</button>
+
+</form>
+<button (click) = 'gotoList()'>GO BACK TO LIST</button>
