@@ -17,7 +17,8 @@ import { DataService } from './services/data.service';
     //allow other modules to use component, directive, pipes 
     LikeComponent,
     PowerPipe,
-    HighlightDirective
+    HighlightDirective,
+    FilterPipe
   ],
 
   //module provider

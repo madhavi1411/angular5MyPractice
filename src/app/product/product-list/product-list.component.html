@@ -1,5 +1,25 @@
 
 <h2>Product List [Cart {{cartItems.length}}]</h2>
+
+<label >Field Name</label>
+<select [(ngModel)]="fieldName">
+  <option value='price'>Price</option>
+  <option value='year'>Year</option>
+  <option value='weight'>Weight</option>
+</select>
+
+<label>Condition</label>
+<select [(ngModel)]="predicate">
+  <option value="gt"> &gt; </option>
+  <option value="lt"> &lt; </option>
+</select>
+
+<label>Value</label> 
+<input [(ngModel)]="expectedValue" />
+
+<p> Filtering for {{fieldName}} {{predicate}} {{expectedValue}} </p>
+
+
   <div class="table-responsive">
   <table class="table  table-hover">
       <thead class="thead-dark">
@@ -14,9 +34,14 @@
     </tr>
     </thead>
 
-    <tr *ngFor = 'let product of products'>
+    <tr *ngFor = 'let product of (products | filter:fieldName:predicate:expectedValue)'>
       <td>{{product.id}}</td>
-      <td>{{product.name}}</td>
+      <!-- <td>{{product.name}}</td> -->
+      <td> 
+        <a [routerLink] = "['/', 'products', 'edit', product.id]">  <!-- '/'' - delimiter, for all the next coming strings products/edit/product.id - this is how it forms -->
+          {{product.name}}
+        </a>
+      </td>
       <td>{{product.price}}</td>
       <td>{{product.year}}</td>
       <td>{{product.weight}}</td>

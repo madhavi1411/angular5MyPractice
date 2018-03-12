@@ -63,7 +63,7 @@ export class DataService {
 
 
 // we can subscribe based on a filter as well. -- this is not as part of RxJs
-// components can react depending on the need of the data from source.
+// components can react depending on the need of the data from source. -- transformation of data
 
   // cartItemsSource : Subject<CartItem[]> = new Subject();
   cartItemsSource : BehaviorSubject<CartItem[]> = new BehaviorSubject([]);

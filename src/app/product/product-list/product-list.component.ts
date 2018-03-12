@@ -21,7 +21,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   cartSubscription : Subscription;
   cartItems : CartItem[] = [];
 
-
+  fieldName: string;
+  predicate: string;
+  expectedValue: any;
 
   constructor(private productService: ProductService, private dataService : DataService) {
 
